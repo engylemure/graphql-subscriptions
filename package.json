@@ -1,0 +1,61 @@
+{
+  "name": "graphql-subscriptions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "jest": {
+    "roots": [
+        "<rootDir>/src"
+    ],
+    "transform": {
+        "^.+\\.tsx?$": "ts-jest"
+    }
+  },
+  "scripts": {
+    "tslint:check": "tslint-config-prettier-check ./tslint.json",
+    "start:dev": "ts-node-dev --no-notify --respawn --transpileOnly ./src",
+    "start": "yarn prisma:deploy --force && ts-node ./src",
+    "test": "jest",
+    "prisma:deploy": "cd prisma && prisma deploy",
+    "prisma:generate": "cd prisma && prisma generate",
+    "clean": "rm -rf src/generated dist",
+    "prettier": "prettier --write \"./src/permissions/*.ts\" \"./src/resolvers/*.ts\" \"./src/utils/*.ts\" \"./src/*.ts\"",
+    "start:build": "yarn clean && yarn compile && yarn prisma:generate && yarn start",
+    "build": "yarn clean && yarn compile && yarn prisma:generate && yarn tsc",
+    "compile": "npx nexus-prisma-generate --client ./src/generated/prisma-client --output ./src/generated/nexus-prisma"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "graphql": "^14.4.2",
+    "graphql-shield": "5.7.3",
+    "graphql-yoga": "1.18.1",
+    "jsonwebtoken": "8.5.1",
+    "lodash": "^4.17.15",
+    "log": "^6.0.0",
+    "log4js": "^5.3.0",
+    "moment": "^2.24.0",
+    "nexus": "0.11.7",
+    "nexus-prisma": "0.3.7",
+    "npx": "^10.2.0",
+    "prisma-client-lib": "1.34.3",
+    "ts-node": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/graphql": "14.2.3",
+    "@types/jest": "^24.0.17",
+    "@types/jsonwebtoken": "8.3.2",
+    "@types/node": "10.14.13",
+    "@types/ws": "6.0.1",
+    "jest": "^24.8.0",
+    "ng-faker": "^1.3.0",
+    "prettier": "1.18.2",
+    "ts-jest": "^24.0.2",
+    "ts-node-dev": "1.0.0-pre.40",
+    "typescript": "3.4.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
